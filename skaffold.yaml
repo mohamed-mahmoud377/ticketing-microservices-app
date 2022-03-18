@@ -4,6 +4,7 @@ deploy:
   kubectl:
     manifests:
       - ./infra/k8s/*  # all the file we want to apply
+      - ./infra/k8s-dev/*
 build:
   local:  # when we build an image do not push to docker hub which is the default behavior
     push: false
