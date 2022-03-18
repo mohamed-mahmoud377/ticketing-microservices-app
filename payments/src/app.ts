@@ -15,6 +15,7 @@ app.set('trust proxy',true); // to make sure that you trust nginx ingress proxy
 // app.enable('trust proxy') does that same thing
 app.use(bodyParser.json());
 app.use(cookieSession({
+    //jerry
     signed: false,
     secure:false
 
