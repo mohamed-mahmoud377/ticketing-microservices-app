@@ -8,7 +8,7 @@ import {PaymentCreatedListener} from "./events/listeners/payment-created-listene
 const startUpDBConnection = async ()=>{
 
 
-
+    console.log("starting..")
 
     if (!process.env.JWT_KEY){
         throw new Error('JWT_KEY must be defined ')
