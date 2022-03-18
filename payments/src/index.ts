@@ -5,7 +5,7 @@ import {OrderCancelledListener} from "./events/listeners/order-cancelled-listene
 import {OrderCreatedListener} from "./events/listeners/order-created-listener";
 
 const startUpDBConnection = async ()=>{
-
+    console.log("starting...")
     if (!process.env.JWT_KEY){
         throw new Error('JWT_KEY must be defined')
     }
