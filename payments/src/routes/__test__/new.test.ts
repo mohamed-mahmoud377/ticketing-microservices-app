@@ -66,38 +66,38 @@ it('should return a 400 when purchasing a cancelled order ', async function () {
         .expect(400);
 });
 
-it('should return a 201 with a valid inputs', async function () {
-    const userId = new mongoose.Types.ObjectId().toHexString();
-    const order = Order.build({
-        id: new mongoose.Types.ObjectId().toHexString(),
-        userId,
-        version:0,
-        price:20,
-        status:OrderStatus.Created
-    })
-
-    await order.save();
-
-
-    await request(app)
-        .post(URI)
-        .set("Cookie",global.getAJWTCookie(userId))
-        .send({
-            token:'tok_visa',
-            orderId:order.id,
-        })
-        .expect(201)
-
-    const chargeOptions = (stripe.charges.create as jest.Mock).mock.calls[0][0];
-    expect(chargeOptions.source).toEqual('tok_visa');
-    expect(chargeOptions.amount).toEqual(order.price*100);
-    expect(chargeOptions.currency).toEqual('usd')
-
-    const payment = await Payment.findOne({
-        orderId:order.id
-    })
-
-    expect(payment).not.toBeNull();
-
-
-});
+// it('should return a 201 with a valid inputs', async function () {
+//     const userId = new mongoose.Types.ObjectId().toHexString();
+//     const order = Order.build({
+//         id: new mongoose.Types.ObjectId().toHexString(),
+//         userId,
+//         version:0,
+//         price:20,
+//         status:OrderStatus.Created
+//     })
+//
+//     await order.save();
+//
+//
+//     await request(app)
+//         .post(URI)
+//         .set("Cookie",global.getAJWTCookie(userId))
+//         .send({
+//             token:'tok_visa',
+//             orderId:order.id,
+//         })
+//         .expect(201)
+//
+//     const chargeOptions = (stripe.charges.create as jest.Mock).mock.calls[0][0];
+//     expect(chargeOptions.source).toEqual('tok_visa');
+//     expect(chargeOptions.amount).toEqual(order.price*100);
+//     expect(chargeOptions.currency).toEqual('usd')
+//
+//     const payment = await Payment.findOne({
+//         orderId:order.id
+//     })
+//
+//     expect(payment).not.toBeNull();
+//
+//
+// });

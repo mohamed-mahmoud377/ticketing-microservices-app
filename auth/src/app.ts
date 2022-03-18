@@ -19,7 +19,8 @@ app.set('trust proxy',true); // to make sure that you trust nginx ingress proxy
 app.use(bodyParser.json());
 app.use(cookieSession({
     signed: false,
-    secure: process.env.NODE_ENV !=='test' // note that you will be in the test env while using jest
+    secure:false
+    // secure: process.env.NODE_ENV !=='test' // note that you will be in the test env while using jest
     // this what jest put in your env but not that jest does not send https request or may I say supertest because it is the
     // lib the sends the http request so when we are in test env the connection will not be secure so the jwt cookie will not
     // be sent so it will any test that checks that so we have to it to false while when we are in the test env as above
