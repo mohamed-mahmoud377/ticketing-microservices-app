@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import {app} from './app'
 const startUpDBConnection = async ()=>{
-    console.log("Starting up ...V2")
+    console.log("Starting up ...V2 ozil")
     if (!process.env.JWT_KEY){
         throw new Error('JWT_KEY must be defined')
     }
